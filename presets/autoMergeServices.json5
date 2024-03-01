@@ -1,0 +1,26 @@
+{
+  "description": "Automerge specific services",
+  "automerge": false,
+  "automergeType": "pr",
+  "automergeStrategy": "rebase",
+  // We'd like to specify "automergeSchedule" here, but it doesn't work with platformAutomerge
+  // See https://github.com/renovatebot/renovate/issues/21436
+  "platformAutomerge": true,
+  "packageRules": [
+    {
+      "description": "Automatically merge explicitly listed services that are considered safe.",
+      "matchDepPatterns": ["google/cloud-sdk"],
+      "addLabels": ["autoMerged"],
+      // Choosing three days primarily to let a working day pass between a Friday update
+      // and an auto-merge on Monday. The downside is that we'll be waiting 3
+      // days in the middle of the week when things are more noticeable.
+      "stabilityDays": 3,
+      // Limit branch creation (and platform auto-merge) to during the workday
+      "schedule": ["after 09:00 and before 15:00 every weekday"],
+      "automerge": true,
+      // Dont need review or assignees on PRs that will auto-merge
+      "reviewersFromCodeOwners": false,
+      "assigneesFromCodeOwners": false
+    }
+  ]
+}

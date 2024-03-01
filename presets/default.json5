@@ -1,0 +1,35 @@
+{
+  dependencyDashboard: true,
+  description: "Default renovate settings",
+  extends: [
+    "config:base",
+    "github>andersliland/renovate-config//presets/groupDeps.json5",
+    "regexManagers:dockerfileVersions",
+  ],
+  labels: ["dependencies"],
+  packageRules: [
+    {
+      addLabels: ["major"],
+      matchUpdateTypes: ["major"],
+    },
+    {
+      addLabels: ["minor"],
+      matchUpdateTypes: ["minor"],
+    },
+    {
+      addLabels: ["patch"],
+      matchUpdateTypes: ["patch"],
+    },
+    {
+      addLabels: ["pin"],
+      matchUpdateTypes: ["pin"],
+    },
+  ],
+  prConcurrentLimit: 10,
+  "pre-commit": {
+    enabled: true,
+  },
+  rangeStrategy: "bump",
+  semanticCommits: "enabled",
+  timezone: "Europe/Oslo",
+}

@@ -1,0 +1,45 @@
+{
+  description: "Group patch deps together in one PR.",
+  packageRules: [
+    {
+      description: "Group all Poetry patch dependencies in one PR",
+      groupName: "poetry-patch",
+      matchCurrentVersion: "/^v?[1-9]*\\.[0-9]*\\.[0-9]*/",
+      matchManagers: ["poetry"],
+      matchUpdateTypes: ["patch", "pin"],
+    },
+    {
+      description: "Group all NPM patch dependencies in one PR",
+      groupName: "npm-patch",
+      matchCurrentVersion: "/^v?[1-9]*\\.[0-9]*\\.[0-9]*/",
+      matchManagers: ["npm"],
+      matchUpdateTypes: ["patch", "pin"],
+    },
+    {
+      description: "Group all Go patch dependencies in one PR",
+      groupName: "go-patch",
+      matchCurrentVersion: "/^v?[1-9]*\\.[0-9]*\\.[0-9]*/",
+      matchManagers: ["gomod"],
+      matchUpdateTypes: ["patch", "pin"],
+    },
+    {
+      description: "Group all Rust patch dependencies in one PR",
+      groupName: "cargo-patch",
+      matchCurrentVersion: "/^v?[1-9]*\\.[0-9]*\\.[0-9]*/",
+      matchManagers: ["cargo"],
+      matchUpdateTypes: ["patch", "pin"],
+    },
+    {
+      description: "Group all Github-action patch dependencies in one PR",
+      groupName: "github-action-patch",
+      matchManagers: ["github-actions"],
+      matchUpdateTypes: ["patch", "pin"],
+    },
+    {
+      description: "Group all Docker-compose patch dependencies in one PR",
+      groupName: "docker-compose-patch",
+      matchManagers: ["docker-compose"],
+      matchUpdateTypes: ["patch", "pin"],
+    },
+  ],
+}

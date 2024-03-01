@@ -1,0 +1,26 @@
+{
+  description: "Group Poetry and NPM dev dependencies in one PR.",
+  packageRules: [
+    {
+      description: "Group all Poetry dev dependencies in one PR",
+      groupName: "poetry-dev",
+      matchCurrentVersion: "/^v?[1-9]*\\.[0-9]*\\.[0-9]*/",
+      matchDepTypes: ["dev-dependencies", "dev"],
+      matchManagers: ["poetry"],
+    },
+    {
+      description: "Group all NPM dev dependencies in one PR",
+      groupName: "npm-dev",
+      matchCurrentVersion: "/^v?[1-9]*\\.[0-9]*\\.[0-9]*/",
+      matchDepTypes: ["devDependencies"],
+      matchManagers: ["npm"],
+    },
+    {
+      description: "Group all Rust dev dependencies in one PR",
+      groupName: "cargo-dev",
+      matchCurrentVersion: "/^v?[1-9]*\\.[0-9]*\\.[0-9]*/",
+      matchDepTypes: ["devDependencies", "dev-dependencies"],
+      matchManagers: ["cargo"],
+    },
+  ],
+}

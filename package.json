@@ -1,0 +1,17 @@
+{
+  "name": "renovate-config",
+  "version": "0.0.0",
+  "description": "Folder containing Renovate [presets](https://docs.renovatebot.com/key-concepts/presets/).",
+  "scripts": {
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "artifactregistry-login": "npx google-artifactregistry-auth"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "renovate": "^37.180.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
