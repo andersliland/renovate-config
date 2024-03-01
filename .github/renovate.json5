@@ -1,0 +1,17 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "github>andersliland/renovate-config//presets/default.json5",
+    "github>andersliland/renovate-config//presets/autoMerge.json5",
+  ],
+  packageRules: [
+    {
+      description: "Ignore Renovate patch updates. They release very often and create a lot of noise.",
+      enabled: false,
+      groupName: "renovate-patch",
+      matchDepNames: ["renovate"],
+      matchManagers: ["npm"],
+      matchUpdateTypes: ["patch", "pin"],
+    },
+  ],
+}
