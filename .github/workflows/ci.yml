@@ -1,0 +1,45 @@
+name: "CI"
+
+on:
+  push:
+    paths:
+      - .github/renovate.json5
+      - .github/workflows/ci.yml
+      - "**.json"
+      - "**.json5"
+      - "!package.json"
+      - "!package-lock.json"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read .tool-versions
+        uses: marocchino/tool-versions-action@v1
+        id: versions
+
+      - name: Setup Node.js ${{ steps.versions.outputs.nodejs }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.versions.outputs.nodejs }}
+          cache: npm
+
+      - run: npm install --global renovate
+
+      - name: Renovate version
+        shell: bash
+        run: |
+          renovate --version
+
+      - name: Validate Renovate config
+        shell: bash
+        run: |
+          renovate-config-validator .github/renovate.json5
+
+      - name: Validate Renovate presets
+        shell: bash
+        run: |
+          make renovate-config-validator

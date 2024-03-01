@@ -1,0 +1,44 @@
+name: "Renovate"
+
+on:
+  # trigger on push to be able to test workflow
+  push:
+  workflow_call:
+    inputs:
+      config-path:
+        description: Path to the Renovate config
+        required: false
+        default: ".github/renovate.json5"
+        type: string
+      node_version:
+        description: NodeJS version
+        required: false
+        default: "20.9.0" # sync with .tool-versions
+        type: string
+      renovate_version:
+        description: Renovate version
+        required: false
+        default: "latest"
+        type: string
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Setup Node
+        uses: kolonialno/actions/setup-node@setup-node-1.2.1
+        with:
+          checkout: true
+          node-version: ${{ inputs.node_version }}
+          disable-auth: true
+          disable-npm-ci: true
+
+      - run: npm install --global renovate ${{ inputs.renovate_version }}
+
+      - name: Validate Renovate config
+        shell: bash
+        run: |
+          renovate-config-validator ${{ inputs.config-path }}

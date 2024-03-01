@@ -1,0 +1,34 @@
+name: "Test release"
+# Tag commits with branch name.
+# Test a PR in another repo by using the tags with #.
+# Example
+# extends: [
+#   'github>kolonialno/renovate-config//presets/autoMerge.json5#<tag>',
+# ]
+
+on:
+  push:
+    branches:
+      - preset-test-*
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set git email and name
+        shell: bash
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Tag commit with branch name
+        shell: bash
+        run: |
+          git tag -a ${GITHUB_REF##*/} -m "Test preset from branch ${GITHUB_REF##*/} from commit ${{ github.sha }}"
+
+      - name: Push tags
+        shell: bash
+        run: git push --tags --force

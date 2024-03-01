@@ -1,0 +1,32 @@
+---
+name: "[lint] pre-commit"
+
+on:
+  push:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  pre_commit:
+    name: pre-commit
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        id:
+          - check-json5
+          - end-of-file-fixer
+          - file-contents-sorter
+          - markdownlint
+          - prettier
+          - sort-simple-yaml
+          - trailing-whitespace
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ${{ matrix.id }}
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: ${{ matrix.id }}
