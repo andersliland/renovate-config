@@ -9,7 +9,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "renovate": "^37.180.0"
+    "renovate": "^37.310.1"
   },
   "devDependencies": {
     "prettier": "^3.2.5"
