@@ -4,17 +4,17 @@
     {
       description: "Group all OpenTelemetry dependencies in one PR",
       groupName: "opentelemetry",
-      matchDepPatterns: "^[@]{0,1}opentelemetry",
+      matchPackageNames: "^[@]{0,1}opentelemetry",
     },
     {
       description: "Group cdktf packages in one PR. Both NPM and Poetry",
       groupName: "cdktf",
-      matchDepPatterns: "^cdktf",
+      matchPackageNames: "^cdktf",
     },
     {
       description: "Group Sentry frontend dependencies. They must often be upgraded together.",
       matchManagers: ["npm"],
-      matchPackagePatterns: ["^@sentry/"],
+      matchPackageNames: "^@sentry/",
     },
   ],
 }
