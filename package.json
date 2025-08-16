@@ -12,6 +12,6 @@
     "renovate": "^37.180.0"
   },
   "devDependencies": {
-    "prettier": "^3.2.5"
+    "prettier": "^3.6.2"
   }
 }
