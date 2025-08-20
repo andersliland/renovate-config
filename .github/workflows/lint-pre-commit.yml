@@ -24,7 +24,7 @@ jobs:
           - trailing-whitespace
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: ${{ matrix.id }}
         uses: pre-commit/action@v3.0.1
